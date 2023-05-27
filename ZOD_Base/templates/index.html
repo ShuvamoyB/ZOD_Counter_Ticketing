@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% block content %}
+
+	<!--begin::Head-->
+	
+	<head>
+		<meta charset="utf-8" />
+		<title>Counter Ticket</title>
+
+		<link rel="stylesheet" href={% static "css/custom.css" %}>
+		<link rel="stylesheet" href={% static "css/custom_20220810.css" %}>
+		<link rel="stylesheet" href={% static "css/style.bundle.css" %}>
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="canonical" href="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="assets/images/favicon.ico" />
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<!--end::Fonts-->
+		<!--begin::Global Stylesheets Bundle(used by all pages)-->
+		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<!--begin::Data Table Stylesheets(used by this page)-->
+		<link href="assets/plugins/custom/datatables/dataTables_wrapper.css" rel="stylesheet" type="text/css" />
+		<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+		<!--end::Data Table Stylesheets-->
+		<link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+		<!--end::Global Stylesheets Bundle-->
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body id="kt_body" class="bg-white header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px;">
+		<!--begin::Main-->
+		<div class="d-flex flex-column flex-root full_bg">
+			<!--begin::Authentication - Sign-in -->
+			<div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed">
+				 <!-- style="background-image: url(assets/images/progress-hd.jpg)" -->
+				<!--begin::Content-->
+				<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-md-20">
+					<!--begin::Logo-->
+					<img alt="Logo" src="assets/images/logo_text.png" class="mb-5" />
+					<a href="login" class="mb-5">
+						<img alt="Logo" src="assets/images/logo_black.png" class="h-40px" />
+					</a>
+					<!--end::Logo-->
+					<!--begin::Wrapper-->
+					<div class="w-md-600px bg-white rounded shadow-lg p-10 p-md-10 mx-auto">
+						<!--begin::Form-->
+						<!-- <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="http://php151.innovaindia.in/zoonewton/ticketcounter/work/" method="POST"> -->
+							<!--begin::Actions-->
+							<div class="row justify-content-center align-items-center mt-0">
+								<!-- <button type="button" onclick="window.open('', '_self', ''); window.close();" class="btn btn-sm btn-danger">Exit Counter</button> -->
+								<!-- <a href="" id="clode-window" class="btn btn-md btn-danger text-uppercase shadow rounded-pill">Exit Counter</a> -->
+								<div class="col-md-7">
+									<!--begin::Heading-->
+									<div class="text-center">
+										<!--begin::Title-->
+										<h1 class="text-dark mb-3 text-uppercase fs-1">Welcome</h1>
+										<!--end::Title-->
+									</div>
+									<!--begin::Heading-->
+									<!--begin::Input group-->
+									<div class="fv-row text-center">
+										<!--begin::Label-->
+										
+										<label class="form-label fs-2 fw-bolder text-danger">{{starttimestr}}!!</label>
+										<!--end::Label-->
+									</div>
+									<!--end::Input group-->
+									<!--begin::Input group-->
+									<div class="fv-row mb-0 text-center">
+										<!--begin::Label-->
+										<label class="form-label fs-2 text-dark">{{startdt}}  |  {{starttime}}</label>
+										<!--end::Label-->
+									</div>
+									<!--end::Input group-->
+								</div>
+								<div class="col-md-5">
+									<a class="btn btn-lg py-10 h-150px fs-2 btn-success text-uppercase rounded-2 shadowlg w-100" onclick="location.href='login';">Open Counter</a>
+									<!-- <button type="submit" onclick="location.href='add';">Open Counter</button> -->
+								</div>
+							</div>
+							<!--end::Actions-->
+						<!-- </form> -->
+						<!--end::Form-->
+					</div>
+					<!--end::Wrapper-->
+				</div>
+				<!--end::Content-->
+			</div>
+			<!--end::Authentication - Sign-in-->
+		</div>
+		<!--end::Main-->
+		<!--begin::Javascript-->
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="assets/plugins/global/plugins.bundle.js"></script>
+		<script src="assets/js/scripts.bundle.js"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		<!--end::Page Custom Javascript-->
+		<!--end::Javascript-->
+	</body>
+	<!--end::Body-->
+{% endblock content %}
+</html>

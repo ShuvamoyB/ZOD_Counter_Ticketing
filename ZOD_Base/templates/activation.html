@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	{% load static %}
+	{% block content %}
+	<!--begin::Head-->
+	<head>
+		<meta charset="utf-8" />
+		<title>Counter Ticket</title>
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="canonical" href="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="assets/images/favicon.ico" />
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<!--end::Fonts-->
+		<!--begin::Global Stylesheets Bundle(used by all pages)-->
+		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<!--begin::Data Table Stylesheets(used by this page)-->
+		<link href="assets/plugins/custom/datatables/dataTables_wrapper.css" rel="stylesheet" type="text/css" />
+		<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+		<!--end::Data Table Stylesheets-->
+		<link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+		<!--end::Global Stylesheets Bundle-->
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body id="kt_body" class="bg-white header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px;">
+		<!--begin::Main-->
+		<div class="d-flex flex-column flex-root full_bg">
+			<!--begin::Authentication - Sign-in -->
+			<div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed">
+				 <!-- style="background-image: url(assets/images/progress-hd.jpg)" -->
+				<!--begin::Content-->
+				<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-md-20">
+					<!--begin::Logo-->
+					<img alt="Logo" src="assets/images/logo_text.png" class="mb-5" />
+					<a href="index.php" class="mb-5">
+						<img alt="Logo" src="assets/images/logo_black.png" class="h-40px" />
+					</a>
+					<!--end::Logo-->
+					<!--begin::Wrapper-->
+					<div class="w-md-600px bg-white rounded shadow-lg p-10 p-md-10 mx-auto">
+
+												
+						<!-- follwing code added by NS on 20221121 -->
+													<!--begin::Label-->
+							<label class="alert alert-warning mb-2">Auto detected system otimization is pending. Please run the "Loadshedding" option from menu to help the system operate fast</label>
+							<!--end::Label-->
+												<!-- above code added by NS on 20221121 -->
+
+						<!--begin::Form-->
+						<form class="form w-100" action="" method="post">
+
+							<!--begin::Input group-->
+							<div class="fv-row">
+								<!-- <label class="form-label fs-2 text-dark"><strong>Ticket Point Activated: </strong> 17/04/2023 | 17:20 PM</label> -->
+								<label class="form-label fs-2 text-dark"><strong>Ticket Point Activated: </strong> {{ startdt }} | {{ starttime }}</label>
+							</div>
+							<!--end::Input group-->
+							<!--begin::Input group-->
+							<div class="fv-row">
+								<label class="form-label fs-2 text-dark"><strong>Today's Code:</strong> {{ todayscode }} </label>
+								<!-- {% for i in TodaysCode %}
+									<label class="form-label fs-2 text-dark"><strong>Today's Code:</strong> {{i.todays_code_t520_x300}} </label>
+								{% endfor %} -->
+							</div>
+							<!--end::Input group-->
+
+							<!--begin::Input group-->
+							<div class="fv-row mb-5">
+								<!--begin::Label-->
+								<label class="form-label fs-2 fw-bolder text-dark">Today's Rate:</label>
+								<!--end::Label-->
+								<table class="table table-bordered table-hover table-row-bordered" id="">
+									<thead>
+										<tr>
+											<th class="fw-bolder bg-light-primary ps-2 fs-3">Events</th>
+											<th class="fw-bolder bg-light-primary fs-3">Adults (Rs.)</th>
+											<th class="fw-bolder bg-light-primary fs-3">Child (Rs.)</th>
+											<th class="fw-bolder bg-light-primary fs-3">Per Unit (Rs.)</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th class="ps-2 fs-3">{{ eventname1 }}</th>
+											<td class="fw-bold ps-2 fs-3">{{ adultrate1 }}</td>
+											<td class="fw-bold ps-2 fs-3">{{ childrate1 }}</td>
+											<td class="fw-bold ps-2 fs-3"></td>
+										</tr>
+										<tr>
+											<th class="ps-2 fs-3">{{ eventname2 }}</th>
+											<td class="fw-bold ps-2 fs-3"></td>
+											<td class="fw-bold ps-2 fs-3"></td>
+											<td class="fw-bold ps-2 fs-3">{{ perunitrate2 }}</td>
+										</tr>
+										<tr>
+											<th class="ps-2 fs-3">{{ eventname3 }}</th>
+											<td class="fw-bold ps-2 fs-3">{{ adultrate3 }}</td>
+											<td class="fw-bold ps-2 fs-3">{{ childrate3 }}</td>
+											<td class="fw-bold ps-2 fs-3"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							
+							<!--end::Input group-->
+							<!--begin::Input group-->
+		
+							<br>
+							<div class="fv-row mb-5">
+								<!-- <label class="form-label fs-2 text-dark"><strong>Ticket Counter closing Time: </strong> 17/04/2023 | 17:20 PM</label> -->
+								<label class="form-label fs-2 text-dark"><strong>Ticket Counter closing Time: </strong> {{ closedt }} | {{ closetime }}</label>
+							</div>
+		
+							<!--end::Input group-->
+							<br>
+							<!--begin::Actions-->
+							<div class="d-flex justify-content-between align-items-center">
+								<!--begin::Submit button-->
+								<a href="generate_ticket_ts" id="kt_sign_in_submit" class="btn btn-lg fs-2 w-50 btn-success me-3 rounded-2 h-100px shadowlg d-flex justify-content-center align-items-center" name="device_mode" value="Touchscreen">Touchscreen Mode</a>
+
+								<a href="generate_ticket_pc" id="kt_sign_in_submit" class="btn btn-lg fs-2 w-50 btn-warning text-dark rounded-2 h-100px shadowlg d-flex justify-content-center align-items-center" name="device_mode" value="PC">PC Mode</a>
+								<!--end::Submit button-->
+								<!-- <a href="" class="btn btn-md btn-success text-dark text-uppercase rounded-pill">Generate Ticket</a> -->
+							</div>
+							<!--end::Actions-->
+						</form>
+						<!--end::Form-->
+					</div>
+					<!--end::Wrapper-->
+				</div>
+				<!--end::Content-->
+			</div>
+			<!--end::Authentication - Sign-in-->
+		</div>
+		<!--end::Main-->
+		<!--begin::Javascript-->
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="assets/plugins/global/plugins.bundle.js"></script>
+		<script src="assets/js/scripts.bundle.js"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		<!--end::Page Custom Javascript-->
+		<!--end::Javascript-->
+	</body>
+	<!--end::Body-->
+	{% endblock content %}
+</html>

@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	{% load static %}
+	{% block content %}
+	<!--begin::Head-->
+	<head>
+		<meta charset="utf-8" />
+		<!-- <title>Salse Report</title>
+		<link rel="shortcut icon" href="assets/images/favicon.ico" /> -->
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="canonical" href="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="assets/images/favicon.ico" />
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<!--end::Fonts-->
+		<!--begin::Global Stylesheets Bundle(used by all pages)-->
+		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<!--begin::Data Table Stylesheets(used by this page)-->
+		<link href="assets/plugins/custom/datatables/dataTables_wrapper.css" rel="stylesheet" type="text/css" />
+		<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+		<!--end::Data Table Stylesheets-->
+		<link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+		<!--end::Global Stylesheets Bundle-->
+		<style type="text/css">
+			.active {
+				background: #006a31;
+				border: 1px solid #01401e;
+				color: #ffffff;
+				font-size: 14px;
+				border-radius: 5px;
+				box-shadow: 1px 2px 3px 1px rgb(0 0 0 / 50%);
+			}
+
+			.card>.card-header.desktop_none{display: none;}
+			.table-scroll {
+			  position: relative;
+			  z-index: 1;
+			  margin: auto;
+			  overflow: auto;
+			  height: 350px;
+			}
+			.table-scroll thead th{
+				position: -webkit-sticky;
+			  position: sticky;
+			  top: 0;
+			}
+			.table-scroll tfoot,
+			.table-scroll tfoot th,
+			.table-scroll tfoot td {
+			  position: -webkit-sticky;
+			  position: sticky;
+			  bottom: 0;
+			  /* background: #666;
+			  color: #fff; */
+			  z-index:4;
+			}
+			.table-scroll thead tr th {
+			  position: -webkit-sticky;
+			  position: sticky;
+			  left: 0;
+			  z-index: 2;
+			  background: #ffffff;
+			}
+			thead th:first-child,
+			tfoot th:first-child {
+			  z-index: 5;
+			}
+		</style>
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+		<!--begin::Main-->
+		<!--begin::Root-->
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Page-->
+			<div class="page d-flex flex-row flex-column-fluid">
+				<!--begin::Wrapper-->
+				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+					<!--begin::Header-->
+					<div id="kt_header" class="header align-items-stretch">
+					  <!--begin::Container-->
+					  <div class="container-fluid d-flex align-items-stretch justify-content-between">
+					    <!--begin::Aside mobile toggle-->
+					    <div class="d-flex align-items-center d-lg-none ms-n3 me-1" title="Show aside menu">
+					      <div class="btn btn-icon btn-active-light-primary" id="kt_aside_mobile_toggle">
+					        <!--begin::Svg Icon | path: icons/duotone/Text/Menu.svg-->
+					        <span class="svg-icon svg-icon-2x mt-1">
+					          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+					            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+					              <rect x="0" y="0" width="24" height="24" />
+					              <rect fill="#000000" x="4" y="5" width="16" height="3" rx="1.5" />
+					              <path d="M5.5,15 L18.5,15 C19.3284271,15 20,15.6715729 20,16.5 C20,17.3284271 19.3284271,18 18.5,18 L5.5,18 C4.67157288,18 4,17.3284271 4,16.5 C4,15.6715729 4.67157288,15 5.5,15 Z M5.5,10 L18.5,10 C19.3284271,10 20,10.6715729 20,11.5 C20,12.3284271 19.3284271,13 18.5,13 L5.5,13 C4.67157288,13 4,12.3284271 4,11.5 C4,10.6715729 4.67157288,10 5.5,10 Z" fill="#000000" opacity="0.3" />
+					            </g>
+					          </svg>
+					        </span>
+					        <!--end::Svg Icon-->
+					      </div>
+					    </div>
+					    <!--end::Aside mobile toggle-->
+					    <!--begin::Mobile logo-->
+					    <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+					      <a href="index.html" class="d-lg-none">
+					        <img alt="Logo" src="assets/images/logo_black.png" class="h-30px" />
+					      </a>
+					    </div>
+					    <!--end::Mobile logo-->
+					    <!--begin::Wrapper-->
+					    <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
+					      <!--begin::Navbar-->
+					      <div class="d-flex align-items-stretch" id="kt_header_nav">
+					        <!--begin::Menu wrapper-->
+					        <div class="header-menu align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-place="true" data-kt-place-mode="prepend" data-kt-place-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
+					          <!--begin::Menu-->
+					          <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true">
+					            <div class="menu-item me-lg-1">
+					              <a class="menu-link active py-3" href="#">
+					                <span class="menu-title text-uppercase">ZGAK - TICKET COUNTER </span>
+					                <!-- <span class="menu-title text-uppercase">Generate Ticket</span> -->
+					              </a>
+					            </div>
+					          </div>
+					          <!--end::Menu-->
+					        </div>
+					        <!--end::Menu wrapper-->
+					      </div>
+					      <!--end::Navbar-->
+					      <!--begin::Topbar-->
+					      <div class="d-flex align-items-stretch flex-shrink-0">
+					        <!--begin::Toolbar wrapper-->
+					        <div class="d-flex align-items-stretch flex-shrink-0">
+					          <div class="menu menu-gray-600 menu-state-bg-light-primary">
+					            <div class="menu-item">
+					              <a id="" href="activation" class="menu-link text-white text-hover-dark fs-3 fw-bolder text-uppercase">Back</a>
+					            </div>
+					            <div class="menu-item">
+					              <a id="" href="statement" class="menu-link text-white text-hover-dark fs-3 fw-bolder text-uppercase">Sale Report</a>
+					            </div>
+					            <div class="menu-item">
+					              <a id="close_counter" href="counter_close" class="menu-link text-white text-hover-dark fs-3 fw-bolder text-uppercase">Close Counter</a>
+					            </div>
+					            
+					            <div class="menu-item">
+					              <a id="close_counter" href="#" class="menu-link text-warning text-hover-dark fs-3 fw-bolder text-uppercase" onclick="return confirm('Ensure that you are connected to the internet, before you proceed to Loadsheding')">Loadshedding</a>
+					            </div>
+
+					          </div>
+					          <!--begin::User-->
+					          <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
+					            <!--begin::Menu wrapper-->
+					            <div class="cursor-pointer symbol symbol-20px symbol-md-30px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end" data-kt-menu-flip="bottom">
+					              <img src="assets/images/user.jpg" alt="metronic">
+					            </div>
+					            <!--begin::Menu-->
+					            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold py-4 fs-6 w-275px" data-kt-menu="true">
+					              <!--begin::Menu item-->
+					              <div class="menu-item px-3">
+					                <div class="menu-content d-flex align-items-center px-3">
+					                  <!--begin::Avatar-->
+					                  <div class="symbol symbol-50px me-5">
+					                    <img alt="Logo" src="assets/images/user.jpg">
+					                  </div>
+					                  <!--end::Avatar-->
+					                  <!--begin::Username-->
+					                  <div class="d-flex flex-column">
+					                    <div class="fw-bolder d-flex align-items-center fs-5">Panna Lal Biswas</div>
+					                  </div>
+					                  <!--end::Username-->
+					                </div>
+					              </div>
+					              <!--end::Menu item-->
+					              <!--begin::Menu separator-->
+					              <div class="separator my-2"></div>
+					              <!--end::Menu separator-->
+					            </div>
+					            <!--end::Menu-->
+					            <!--end::Menu wrapper-->
+					          </div>
+					          <!--end::User -->
+					        </div>
+					        <!--end::Toolbar wrapper-->
+					      </div>
+					      <!--end::Topbar-->
+					    </div>
+					    <!--end::Wrapper-->
+					  </div>
+					  <!--end::Container-->
+					</div>
+					<!--end::Header-->
+					<!--begin::Content-->
+					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+						<!--begin::Post-->
+						<div class="post d-flex flex-column-fluid" id="kt_post">
+							<!--begin::Container-->
+							<div id="kt_content_container" class="container">
+								<!--begin::Form-->
+								<form action="" method="post">
+									{% csrf_token %}
+									<div class="card card-flush pt-5 mb-5" id="printableDiv">
+										<!--begin::Card header-->
+										<div class="card-header border-bottom print_none">
+											<!--begin::Card title-->
+											<div class="card-title mb-5 w-100">
+												<div class="fv-row w-100 d-flex align-items-end justify-content-start">
+													<!--begin::Label-->
+													<label class="form-label fs-2 fw-bolder text-dark me-5">Date Range</label>
+													<!--end::Label-->
+													<!--begin::Input-->
+													<input class="form-control form-control-md fs-3 form-control-solid date-picker w-50 me-10" type="text" name="date_range" autocomplete="off">
+													<!--end::Input-->
+													<button type="submit" id="" class="btn btn-lg btn-primary mb-0 text-uppercase">
+														<span class="indicator-label">Generate Statement</span>
+														<span class="indicator-progress">Please wait...
+														<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+													</button>
+												</div>
+											</div>
+											<!--begin::Card title-->
+											<!--begin::Row-->
+											<div class="fv-row d-flex justify-content-between align-items-center w-100">
+												<!--begin::Label-->
+												<label class="form-label fs-3 text-dark mb-0"><strong>Report Generated on:</strong> {{ report_generated_dt }} | {{ report_generated_time }}</label>
+												<!--end::Label-->
+												<div class="d-flex justify-content-end align-items-center">
+													<a href="statement" class="btn btn-md fs-2 btn-secondary me-3"> Back</a>
+													<button type="button" class="btn btn-md fs-2 btn-warning text-dark" onclick="printDiv();">Print Statement</button>
+													<!-- <a href="http://php151.innovaindia.in/zoonewton/ticketcounter/work/statement/summary/20230330/20230331" class="btn btn-sm btn-success"> View Summary</a> -->
+												</div>
+											</div>
+											<!--end::Row-->
+										</div>
+
+										<div class="card-header border-bottom desktop_none">
+											<div class="print_header">
+												<h2 style="font-family: 'Roboto Condensed', sans-serif;color: #000000;margin: 0;margin-bottom: 5px;text-align:center;">
+													ZGAK												</h2>
+												<!--begin::Card title-->
+												<div class="card-title d-flex align-items-center justify-content-between w-100" style="display: flex;justify-content: space-between;align-items: flex-end;font-family: 'Roboto Condensed', sans-serif;font-size: 18px;color: #000000;padding: 0;">
+													<div class="" style="font-family: 'Roboto Condensed', sans-serif;">
+														<!-- <img src="http://php151.innovaindia.in/zoonewton/ticketcounter/work/assets/images/zoo_logo.png" alt="Zoo" class="logo mb-2" style="filter: brightness(0);"> -->
+
+														<h4 style="font-family: 'Roboto Condensed', sans-serif;color: #000000;margin: 0;margin-bottom: 5px">
+															Counter : <span style="text-transform:uppercase;">MG01</span>
+														</h4>
+														<h4 style="font-family: 'Roboto Condensed', sans-serif;color: #000000;margin: 0;margin-bottom: 5px">
+															User : Panna Lal Biswas														</h4>
+													</div>
+												</div>
+												<!--begin::Card title-->
+											</div>
+										</div>
+										<!--end::Card header-->
+										<!--begin::Card body-->
+										<div class="card-body pt-15">
+											<!--begin::Fieldset-->
+											<fieldset class="mb-15">
+												<lagend><h3 style="font-family: 'Roboto Condensed', sans-serif;text-transform:uppercase;    margin: 10px 0;">Counter Sale</h3></lagend>
+												<!--begin::Row-->
+												<div class="fv-row px-5 pt-5" style="margin-bottom:5px;">
+													<!--begin::Label-->
+													<label style="font-family: 'Roboto Condensed', sans-serif;" class="form-label fs-6 text-dark me-3"><strong>Date:</strong> {{ report_generated_dt }} <span class="ps-3">|</span></label>
+													<!--end::Label-->
+													<!--begin::Label-->
+													<label style="font-family: 'Roboto Condensed', sans-serif;" class="form-label fs-6 text-dark me-3"><strong>Tickets:</strong> <span id="total_ticket">6</span> </label>
+													<!--end::Label-->
+												</div>
+												<!--end::Row-->
+
+																								<div class="table-container table-responsive mx-5">
+
+													<!-- test table -->
+													<table class="table table-row-dashed main-table" id="sample_3" style="margin-bottom: 5px">
+														<thead>
+															<tr class="text-dark fw-bolder">
+																<th colspan="6" style="font-family: 'Roboto Condensed', sans-serif;text-align: left;">
+																	Entry																</th>
+															</tr>
+															<!-- <tr class="text-dark fw-bolder">
+																<th width="15%" style="font-family: 'Roboto Condensed', sans-serif;">Type</th>
+																<th width="10%" style="font-family: 'Roboto Condensed', sans-serif;">Total</th>
+																<th width="15%" style="font-family: 'Roboto Condensed', sans-serif;">Amount</th>
+															</tr> -->
+														</thead>
+														<tbody>												
+																															<tr>
+																	<td style="font-family: 'Roboto Condensed', sans-serif;font-weight:bold;">Adult</td>
+																	<td style="font-family: 'Roboto Condensed', sans-serif;">3</td>
+																	<td style="font-family: 'Roboto Condensed', sans-serif;">
+																		₹150/-
+																	</td>
+																</tr>
+																<tr>
+																	<td style="font-family: 'Roboto Condensed', sans-serif;font-weight:bold;">Child</td>
+																	<td style="font-family: 'Roboto Condensed', sans-serif;">2</td>
+																	<td style="font-family: 'Roboto Condensed', sans-serif;">
+																		₹40/-
+																	</td>
+																</tr>
+															
+
+														</tbody>
+														<tfoot class="bg-light-warning border-top border-bottom border-yellow">
+															<tr class="text-dark fw-bolder">
+																<th style="font-family: 'Roboto Condensed', sans-serif;font-weight:bold;" class="text-end border-end border-yellow">Total</th>
+																<th style="font-family: 'Roboto Condensed', sans-serif;">5</th>
+																<th style="font-family: 'Roboto Condensed', sans-serif;">₹190 /-</th>
+															</tr>
+														</tfoot>
+													</table>
+													<!-- end test table -->
+
+													<table class="table table-row-dashed main-table" style=" width: 100%; margin-bottom: 5px">
+														<tbody><tr>
+															<td style="font-family: 'Roboto Condensed', sans-serif;"> Cash : ₹120/-</td>
+														</tr>
+														<tr>
+															<td style="font-family: 'Roboto Condensed', sans-serif;"> Card : ₹70/-</td>
+														</tr>
+														<tr>
+															<td style="font-family: 'Roboto Condensed', sans-serif;"> UPI : ₹0/-</td>
+														</tr>
+													</tbody></table>
+												</div>
+																								<div class="table-container table-responsive mx-5">
+
+													<!-- test table -->
+													<table class="table table-row-dashed main-table" id="sample_3" style="margin-bottom: 5px">
+														<thead>
+															<tr class="text-dark fw-bolder">
+																<th colspan="6" style="font-family: 'Roboto Condensed', sans-serif;text-align: left;">
+																	Video Photography																</th>
+															</tr>
+															<!-- <tr class="text-dark fw-bolder">
+																<th width="15%" style="font-family: 'Roboto Condensed', sans-serif;">Type</th>
+																<th width="10%" style="font-family: 'Roboto Condensed', sans-serif;">Total</th>
+																<th width="15%" style="font-family: 'Roboto Condensed', sans-serif;">Amount</th>
+															</tr> -->
+														</thead>
+														<tbody>
+																															<tr>
+																	<td style="font-family: 'Roboto Condensed', sans-serif;font-weight:bold;">Per Unit</td>
+																	<td style="font-family: 'Roboto Condensed', sans-serif;">2</td>
+																	<td style="font-family: 'Roboto Condensed', sans-serif;">
+																		₹500/-
+																	</td>
+																</tr>
+															
+
+														</tbody>
+														<tfoot class="bg-light-warning border-top border-bottom border-yellow">
+															<tr class="text-dark fw-bolder">
+																<th style="font-family: 'Roboto Condensed', sans-serif;font-weight:bold;" class="text-end border-end border-yellow">Total</th>
+																<th style="font-family: 'Roboto Condensed', sans-serif;">2</th>
+																<th style="font-family: 'Roboto Condensed', sans-serif;">₹500 /-</th>
+															</tr>
+														</tfoot>
+													</table>
+													<!-- end test table -->
+
+													<table class="table table-row-dashed main-table" style=" width: 100%; margin-bottom: 5px">
+														<tbody><tr>
+															<td style="font-family: 'Roboto Condensed', sans-serif;"> Cash : ₹250/-</td>
+														</tr>
+														<tr>
+															<td style="font-family: 'Roboto Condensed', sans-serif;"> Card : ₹250/-</td>
+														</tr>
+														<tr>
+															<td style="font-family: 'Roboto Condensed', sans-serif;"> UPI : ₹0/-</td>
+														</tr>
+													</tbody></table>
+												</div>
+																								<div class="table-container table-responsive mx-5">
+
+													<!-- test table -->
+													<table class="table table-row-dashed main-table" id="sample_3" style="margin-bottom: 5px">
+														<thead>
+															<tr class="text-dark fw-bolder">
+																<th colspan="6" style="font-family: 'Roboto Condensed', sans-serif;text-align: left;">
+																	Aquarium																</th>
+															</tr>
+															<!-- <tr class="text-dark fw-bolder">
+																<th width="15%" style="font-family: 'Roboto Condensed', sans-serif;">Type</th>
+																<th width="10%" style="font-family: 'Roboto Condensed', sans-serif;">Total</th>
+																<th width="15%" style="font-family: 'Roboto Condensed', sans-serif;">Amount</th>
+															</tr> -->
+														</thead>
+														<tbody>
+																															<tr>
+																	<td style="font-family: 'Roboto Condensed', sans-serif;font-weight:bold;">Per Unit</td>
+																	<td style="font-family: 'Roboto Condensed', sans-serif;">0</td>
+																	<td style="font-family: 'Roboto Condensed', sans-serif;">
+																		₹0/-
+																	</td>
+																</tr>
+															
+
+														</tbody>
+														<tfoot class="bg-light-warning border-top border-bottom border-yellow">
+															<tr class="text-dark fw-bolder">
+																<th style="font-family: 'Roboto Condensed', sans-serif;font-weight:bold;" class="text-end border-end border-yellow">Total</th>
+																<th style="font-family: 'Roboto Condensed', sans-serif;">0</th>
+																<th style="font-family: 'Roboto Condensed', sans-serif;">₹0 /-</th>
+															</tr>
+														</tfoot>
+													</table>
+													<!-- end test table -->
+
+													<table class="table table-row-dashed main-table" style=" width: 100%; margin-bottom: 5px">
+														<tbody><tr>
+															<td style="font-family: 'Roboto Condensed', sans-serif;"> Cash : ₹20/-</td>
+														</tr>
+														<tr>
+															<td style="font-family: 'Roboto Condensed', sans-serif;"> Card : ₹20/-</td>
+														</tr>
+														<tr>
+															<td style="font-family: 'Roboto Condensed', sans-serif;"> UPI : ₹0/-</td>
+														</tr>
+													</tbody></table>
+												</div>
+												
+												<div class="table-container table-responsive mx-5">
+																										<table class="table table-row-dashed main-table" style=" width: 100%; margin-bottom: 5px">
+														<tbody><tr>
+															<th style="text-align:center;font-weight:bold;text-transform:uppercase;font-family: 'Roboto Condensed', sans-serif;">Collection</th>
+														</tr>
+														<tr>
+															<td style="font-family: 'Roboto Condensed', sans-serif;">Cash: ₹390/-</td>
+														</tr>
+														<tr>
+															<td style="font-family: 'Roboto Condensed', sans-serif;">Card: ₹340/-</td>
+														</tr>
+														<tr>
+															<td style="font-family: 'Roboto Condensed', sans-serif;">UPI: ₹0/-</td>
+														</tr>
+														<tr>
+															<td style="font-family: 'Roboto Condensed', sans-serif;">Total: ₹730/-</td>
+														</tr>
+													</tbody></table>
+												</div>
+
+												<div class="table-container table-responsive mx-5">
+																																								<table class="table table-row-dashed main-table" style=" width: 100%; margin-bottom: 5px">
+															<thead>
+																<tr>
+																	<th colspan="3" class="text-dark fw-bolder" style="text-align:center;font-weight:bold;text-transform:uppercase;font-family: 'Roboto Condensed', sans-serif;">Ticket Reprint Details</th>
+																</tr>
+																<tr>
+																	<th style="font-family: 'Roboto Condensed', sans-serif;">Ticket No.</th>
+																	<th style="font-family: 'Roboto Condensed', sans-serif;">Reprinted</th>
+																	<th style="font-family: 'Roboto Condensed', sans-serif;">Value</th>
+																</tr>
+															</thead>
+															<tbody>
+																																	<tr>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">0101MG300323C001E/5 (Entry)</td>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">7</td>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">120/-</td>
+																	</tr>
+																																	<tr>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">0101MG300323C002C/5 (Video Photography)</td>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">7</td>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">250/-</td>
+																	</tr>
+																																	<tr>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">0101MG300323C003A/5 (Aquarium)</td>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">7</td>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">20/-</td>
+																	</tr>
+																																	<tr>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">0101MG300323C004E/5 (Entry)</td>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">1</td>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">70/-</td>
+																	</tr>
+																																	<tr>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">0101MG300323C005C/5 (Video Photography)</td>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">1</td>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">250/-</td>
+																	</tr>
+																																	<tr>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">0101MG300323C006A/5 (Aquarium)</td>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">1</td>
+																		<td style="font-family: 'Roboto Condensed', sans-serif;">20/-</td>
+																	</tr>
+																															</tbody>
+														</table>
+																									</div>
+												<p class="fw-bolder mx-5" style="font-family: 'Roboto Condensed', sans-serif;margin:0;">
+													Printed On : 30-03-2023 15:40												</p>
+											</fieldset>
+											<!--end::Fieldset-->
+										</div>
+										<!--end::Card body-->
+									</div>
+								</form>
+								<!--end::Form-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Post-->
+					</div>
+					<!--end::Content-->
+					<!--begin::Footer-->
+					<div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+					  <!--begin::Container-->
+					  <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-center">
+					    <!--begin::Copyright-->
+					    <div class="text-dark order-2 order-md-1">
+					      <p class="copyr mb-0">@ 2023 Zoo Counter Ticket</p>
+					    </div>
+					    <!--end::Copyright-->
+					  </div>
+					  <!--end::Container-->
+					</div>
+					<!--end::Footer-->
+				</div>
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Page-->
+		</div>
+		<!--end::Root-->
+		<!--begin::Scrolltop-->
+		<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+			<!--begin::Svg Icon | path: icons/duotone/Navigation/Up-2.svg-->
+			<span class="svg-icon">
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<polygon points="0 0 24 0 24 24 0 24" />
+						<rect fill="#000000" opacity="0.5" x="11" y="10" width="2" height="10" rx="1" />
+						<path d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z" fill="#000000" fill-rule="nonzero" />
+					</g>
+				</svg>
+			</span>
+			<!--end::Svg Icon-->
+		</div>
+		<!--end::Scrolltop-->
+		<!--end::Main-->
+		<!--begin::Javascript-->
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="assets/plugins/global/plugins.bundle.js"></script>
+		<script src="assets/js/scripts.bundle.js"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		<!--end::Page Custom Javascript-->
+		<!--end::Javascript-->
+		<script>
+			$('.date-picker').daterangepicker({
+				//singleDatePicker: true,
+				autoUpdateInput: true,
+				startDate: moment().startOf('hour'),
+        endDate: moment().startOf('hour').add(32, 'hour'),
+        locale: {
+            cancelLabel: 'Clear',
+            format: "DD-MM-YYYY"
+        }
+			});
+		</script>
+		<script type="text/javascript">
+			function printDiv() {
+        var divToPrint = document.getElementById('printableDiv');
+
+        var newWin=window.open('','Print-Window');
+
+        newWin.document.open();
+
+				var pageTitle = '<title>Counter Statement</title>';
+
+				var stylesheet = '<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">';
+
+        var style =  '<style> body{margin: 15mn} table{width: 100%; border-collapse: collapse} table td, table th{border: 1px solid #000000; vertical-align: middle; text-align: center; padding: 5px}.print_header{display:block;}.card>.card-header .card-title, .card>.card-header .card-title .card-label {font-weight: 500;font-size: 1.275rem;color: #181c32;}.card>.card-header .card-title {display: flex;align-items: center;margin: 0.5rem;margin-left: 0;}.border-bottom {border-bottom: 1px solid #2a2a2a!important;} .card>.card-header {display: flex;justify-content: space-between;align-items: stretch;flex-wrap: wrap;min-height: 70px;padding: 0 2.25rem;background-color: transparent;} .pt-6 {padding-top: 1.5rem!important;} .card-body {flex: 1 1 auto;padding: 1rem 1rem;} .eof-line {display:block;}.desktop_none{display:block;}.print_none{display:none;}lagend h3{text-align:center;text-transform:uppercase;}table th, table td{font-size:14px;}</style>'
+
+        newWin.document.write('<html>' + stylesheet + pageTitle + style + '<body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+
+        newWin.document.close();
+
+				newWin.addEventListener("afterprint", function(){newWin.close();});
+        // setTimeout(function(){newWin.close();},10);
+      }
+		</script>
+	</body>
+	<!--end::Body-->
+	{% endblock %}
+</html>

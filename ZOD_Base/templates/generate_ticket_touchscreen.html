@@ -1,0 +1,517 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	{% load static %}
+	{% block content %}
+	<!--begin::Head-->
+	<head>
+		<meta charset="utf-8" />
+		<title>Counter Ticket</title>
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="canonical" href="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="assets/images/favicon.ico" />
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<!--end::Fonts-->
+		<!--begin::Global Stylesheets Bundle(used by all pages)-->
+		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<!--begin::Data Table Stylesheets(used by this page)-->
+		<link href="assets/plugins/custom/datatables/dataTables_wrapper.css" rel="stylesheet" type="text/css" />
+		<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+		<!--end::Data Table Stylesheets-->
+		<link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+		<!--end::Global Stylesheets Bundle-->
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+		<!--begin::Main-->
+		<!--begin::Root-->
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Page-->
+			<div class="page d-flex flex-row flex-column-fluid">
+				<!--begin::Wrapper-->
+				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+					<!--begin::Header-->
+					<div id="kt_header" class="header align-items-stretch">
+					  <!--begin::Container-->
+					  <div class="container-fluid d-flex align-items-stretch justify-content-between">
+					    <!--begin::Aside mobile toggle-->
+					    <div class="d-flex align-items-center d-lg-none ms-n3 me-1" title="Show aside menu">
+					      <div class="btn btn-icon btn-active-light-primary" id="kt_aside_mobile_toggle">
+					        <!--begin::Svg Icon | path: icons/duotone/Text/Menu.svg-->
+					        <span class="svg-icon svg-icon-2x mt-1">
+					          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+					            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+					              <rect x="0" y="0" width="24" height="24" />
+					              <rect fill="#000000" x="4" y="5" width="16" height="3" rx="1.5" />
+					              <path d="M5.5,15 L18.5,15 C19.3284271,15 20,15.6715729 20,16.5 C20,17.3284271 19.3284271,18 18.5,18 L5.5,18 C4.67157288,18 4,17.3284271 4,16.5 C4,15.6715729 4.67157288,15 5.5,15 Z M5.5,10 L18.5,10 C19.3284271,10 20,10.6715729 20,11.5 C20,12.3284271 19.3284271,13 18.5,13 L5.5,13 C4.67157288,13 4,12.3284271 4,11.5 C4,10.6715729 4.67157288,10 5.5,10 Z" fill="#000000" opacity="0.3" />
+					            </g>
+					          </svg>
+					        </span>
+					        <!--end::Svg Icon-->
+					      </div>
+					    </div>
+					    <!--end::Aside mobile toggle-->
+					    <!--begin::Mobile logo-->
+					    <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+					      <a href="index.html" class="d-lg-none">
+					        <img alt="Logo" src="assets/images/logo_black.png" class="h-30px" />
+					      </a>
+					    </div>
+					    <!--end::Mobile logo-->
+					    <!--begin::Wrapper-->
+					    <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
+					      <!--begin::Navbar-->
+					      <div class="d-flex align-items-stretch" id="kt_header_nav">
+					        <!--begin::Menu wrapper-->
+					        <div class="header-menu align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-place="true" data-kt-place-mode="prepend" data-kt-place-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
+					          <!--begin::Menu-->
+					          <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true">
+					            <div class="menu-item me-lg-1">
+					              <a class="menu-link active py-3" href="#">
+					                <span class="menu-title text-uppercase">ZGAK - TICKET COUNTER </span>
+					                <!-- <span class="menu-title text-uppercase">Generate Ticket</span> -->
+					              </a>
+					            </div>
+					          </div>
+					          <!--end::Menu-->
+					        </div>
+					        <!--end::Menu wrapper-->
+					      </div>
+					      <!--end::Navbar-->
+					      <!--begin::Topbar-->
+					      <div class="d-flex align-items-stretch flex-shrink-0">
+					        <!--begin::Toolbar wrapper-->
+					        <div class="d-flex align-items-stretch flex-shrink-0">
+					          <div class="menu menu-gray-600 menu-state-bg-light-primary">
+					            <div class="menu-item">
+					              <a id="" href="activation" class="menu-link text-white text-hover-dark fs-3 fw-bolder text-uppercase">Back</a>
+					            </div>
+					            <div class="menu-item">
+					              <a id="" href="statement" class="menu-link text-white text-hover-dark fs-3 fw-bolder text-uppercase">Sale Report</a>
+					            </div>
+					            <div class="menu-item">
+					              <a id="close_counter" href="counter_close.html" class="menu-link text-white text-hover-dark fs-3 fw-bolder text-uppercase">Close Counter</a>
+					            </div>
+					            
+					            <div class="menu-item">
+					              <a id="close_counter" href="#" class="menu-link text-warning text-hover-dark fs-3 fw-bolder text-uppercase" onclick="return confirm('Ensure that you are connected to the internet, before you proceed to Loadsheding')">Loadshedding</a>
+					            </div>
+
+					          </div>
+					          <!--begin::User-->
+					          <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
+					            <!--begin::Menu wrapper-->
+					            <div class="cursor-pointer symbol symbol-20px symbol-md-30px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end" data-kt-menu-flip="bottom">
+					              <img src="assets/images/user.jpg" alt="metronic">
+					            </div>
+					            <!--begin::Menu-->
+					            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold py-4 fs-6 w-275px" data-kt-menu="true">
+					              <!--begin::Menu item-->
+					              <div class="menu-item px-3">
+					                <div class="menu-content d-flex align-items-center px-3">
+					                  <!--begin::Avatar-->
+					                  <div class="symbol symbol-50px me-5">
+					                    <img alt="Logo" src="assets/images/user.jpg">
+					                  </div>
+					                  <!--end::Avatar-->
+					                  <!--begin::Username-->
+					                  <div class="d-flex flex-column">
+					                    <div class="fw-bolder d-flex align-items-center fs-5">Panna Lal Biswas</div>
+					                  </div>
+					                  <!--end::Username-->
+					                </div>
+					              </div>
+					              <!--end::Menu item-->
+					              <!--begin::Menu separator-->
+					              <div class="separator my-2"></div>
+					              <!--end::Menu separator-->
+					            </div>
+					            <!--end::Menu-->
+					            <!--end::Menu wrapper-->
+					          </div>
+					          <!--end::User -->
+					        </div>
+					        <!--end::Toolbar wrapper-->
+					      </div>
+					      <!--end::Topbar-->
+					    </div>
+					    <!--end::Wrapper-->
+					  </div>
+					  <!--end::Container-->
+					</div>
+					<!--end::Header-->
+					<!--begin::Content-->
+					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+						<!--begin::Post-->
+						<div class="post d-flex flex-column-fluid" id="kt_post">
+							<!--begin::Container-->
+							<div id="kt_content_container" class="container-fluid">
+								<!--begin::Form-->
+								<form action="print_ticket" method="post">
+									{% csrf_token %}
+									<div class="card card-flush pt-2 mb-5">
+										<!--begin::Card body-->
+										<div class="card-body pt-8">
+											<div class="row">
+												<div class="col-md-8">													
+													<input type="hidden" name="event_ids[]" value="1">
+													<!--begin::Fieldset-->
+													<fieldset>
+														<lagend><h3>Entry <span>(Rate: Adult Rs. 50, Child Rs. 20)</span></h3></lagend>
+														<!--begin::Row-->
+														<div id="entry_ticket_adult" class="row gy-5 g-xl-8 px-5 align-items-center ticket-row">
+															<div class="col-md-2">
+																<h6 class="fs-3">Adult</h6>
+															</div>
+															<div class="col-md-2">
+																<input autocomplete="off" type="text" class="form-control form-control-lg form-control-solid border-warning total-tickets fw-bolder fs-1 text-center" name="total_adult_1" value="" data-rate="50" readonly="">
+															</div>
+															<div class="col-md-8">
+																<div class="row align-items-center justify-content-end">
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">0</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">1</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">2</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">5</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">10</button>
+																	</div>
+																	<div class="col-md-2 text-end mt-5 mt-sm-0 ps-0 ps-0">
+																		<button type="button" class="btn btn-sm btn-warning text-dark reset-btn shadowlg py-6 fs-2 text-uppercase rounded-2">Reset</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<!--end::Row-->
+														<hr>
+														<!--begin::Row-->
+														<div id="entry_ticket_child" class="row gy-5 g-xl-8 px-5 align-items-center ticket-row">
+															<div class="col-md-2">
+																<h6 class="fs-3">Child <br>
+																	<!-- code commented by NS on 20220524 -->
+																	<!-- <span class="fs-7">(Below 5 Years)</span> -->
+																</h6>
+															</div>
+															<div class="col-md-2">
+																<input id="total_child_tickets" type="text" class="form-control form-control-lg form-control-solid border-warning total-tickets fw-bolder fs-1 text-center" name="total_child_1" value="" data-rate="20" readonly="">
+															</div>
+															<div class="col-md-8">
+																<div class="row align-items-center justify-content-end">
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">0</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">1</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">2</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">5</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">10</button>
+																	</div>
+																	<div class="col-md-2 text-end mt-5 mt-sm-0 ps-0">
+																		<button type="button" class="btn btn-sm btn-warning text-dark reset-btn shadowlg py-6 fs-2 text-uppercase rounded-2">Reset</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<!--end::Row-->
+													</fieldset>
+													<!--end::Fieldset-->
+													
+													<input type="hidden" name="event_ids[]" value="2">
+													<!--begin::Fieldset-->
+													<fieldset>
+														<lagend><h3>Video Photography <span>(Rate: Rs. 250)</span></h3></lagend>
+														<!--begin::Row-->
+														<div class="row gy-5 g-xl-8 px-5 align-items-center ticket-row">
+															<div class="col-md-2">
+																<h6 class="fs-3">Per unit</h6>
+															</div>
+															<div class="col-md-2">
+																<input type="text" id="" class="form-control form-control-lg form-control-solid border-warning total-tickets fw-bolder fs-1 text-center" name="total_perunit_2" value="" data-rate="250" readonly="">
+															</div>
+															<div class="col-md-8">
+																<div class="row align-items-center justify-content-end">
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">0</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">1</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">2</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">5</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">10</button>
+																	</div>
+																	<div class="col-md-2 text-end mt-5 mt-sm-0 ps-0">
+																		<button type="button" class="btn btn-sm btn-warning text-dark reset-btn shadowlg py-6 fs-2 text-uppercase rounded-2">Reset</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<!--end::Row-->
+													</fieldset>
+													<!--end::Fieldset-->
+												
+													<input type="hidden" name="event_ids[]" value="3">
+													<!--begin::Fieldset-->
+													<fieldset>
+														<lagend><h3>Aquarium <span>(Rate: Adult Rs. 20, Child Rs. 10)</span></h3></lagend>
+														<!--begin::Row-->
+														<div id="entry_ticket_adult" class="row gy-5 g-xl-8 px-5 align-items-center ticket-row">
+															<div class="col-md-2">
+																<h6 class="fs-3">Adult</h6>
+															</div>
+															<div class="col-md-2">
+																<input autocomplete="off" type="text" class="form-control form-control-lg form-control-solid border-warning total-tickets fw-bolder fs-1 text-center" name="total_adult_3" value="" data-rate="20" readonly="">
+															</div>
+															<div class="col-md-8">
+																<div class="row align-items-center justify-content-end">
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">0</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">1</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">2</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">5</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">10</button>
+																	</div>
+																	<div class="col-md-2 text-end mt-5 mt-sm-0 ps-0 ps-0">
+																		<button type="button" class="btn btn-sm btn-warning text-dark reset-btn shadowlg py-6 fs-2 text-uppercase rounded-2">Reset</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<!--end::Row-->
+														<hr>
+														<!--begin::Row-->
+														<div id="entry_ticket_child" class="row gy-5 g-xl-8 px-5 align-items-center ticket-row">
+															<div class="col-md-2">
+																<h6 class="fs-3">Child <br>
+																	<!-- code commented by NS on 20220524 -->
+																	<!-- <span class="fs-7">(Below 5 Years)</span> -->
+																</h6>
+															</div>
+															<div class="col-md-2">
+																<input id="total_child_tickets" type="text" class="form-control form-control-lg form-control-solid border-warning total-tickets fw-bolder fs-1 text-center" name="total_child_3" value="" data-rate="10" readonly="">
+															</div>
+															<div class="col-md-8">
+																<div class="row align-items-center justify-content-end">
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">0</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">1</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">2</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">5</button>
+																	</div>
+																	<div class="col-md-2 col-2 text-center">
+																		<button type="button" class="calculate no-of-ticket text-center p-2 py-5 fs-1 text-white text-uppercase">10</button>
+																	</div>
+																	<div class="col-md-2 text-end mt-5 mt-sm-0 ps-0">
+																		<button type="button" class="btn btn-sm btn-warning text-dark reset-btn shadowlg py-6 fs-2 text-uppercase rounded-2">Reset</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<!--end::Row-->
+													</fieldset>
+													<!--end::Fieldset-->
+												</div>
+
+												<div class="col-md-4">
+													<!-- <h2 class="fw-bolder mb-3 fs-1">Payment Mode</h2> -->
+													<!-- Added Reprint Button by ADC on 20220404 -->
+													<div class="text-end mb-0">
+														<h6 id="show_reprint" class="d-flex align-items-center btn btn-lg fs-3 btn-warning text-dark mb-0 rounded-2">Reprint Ticket <i class="fas fa-arrow-alt-circle-down text-white text-shadow fs-1 cursor-pointer ms-4"></i></h6>
+														<div id="reprint_btn" class="d-none">
+															<div class="d-flex justify-content-end mb-2">
+																<a class="fs-1 text-uppercase bg-warning text-dark text-center py-4 px-8" href="print_ticket.html">Reprint Last Ticket</a>
+															</div>
+														</div>
+													</div>
+																								<!-- End Added Reprint Button by ADC on 20220404 -->
+													<!--begin::Actions-->
+													<div class="row align-items-center">
+														<div class="col-6">
+															<label for="cash" class="calculate focus me-3 text-center payment_mode p-2 py-8 fs-1 text-white text-uppercase"><input type="radio" id="cash" name="payment_mode_type" class="d-none" value="cash">Cash</label>
+														</div>
+														<div class="col-6">
+															<label for="card" class="calculate focus me-3 text-center payment_mode p-2 py-8 fs-1 text-white text-uppercase"><input type="radio" id="card" name="payment_mode_type" class="d-none" value="card">Card</label>
+														</div>
+														<div class="col-12 mt-5">
+															<label for="upi" class="calculate focus me-0 text-center payment_mode p-2 py-8 fs-1 text-white text-uppercase"><input type="radio" id="upi" name="payment_mode_type" class="d-none" value="upi">UPI / QR Code</label>
+														</div>
+													</div>
+													<!--end::Actions-->
+													<input type="hidden" name="payment_mode" id="payment_mode">
+													<input type="hidden" id="total_tickets">
+													<h1 class="my-5 text-danger fs-1">Total Payable: Rs. <span id="total_amount"></span></h1>
+													<div class="fv-row mb-0">
+														<!--begin::Label-->
+														<label class="form-check form-check-inline form-check-solid me-0 btn btn-danger ps-15 py-8 rounded-2 shadowlg">
+															<span class="fw-bold ps-2 fs-1 text-uppercase">Payment Received</span>
+															<input id="payment_received" class="form-check-input" name="payment_received" type="checkbox" value="yes" required="">
+														</label>
+														<!--end::Label-->
+													</div>
+													<!-- <div id="cash_row" class="row align-items-center justify-content-end mt-10" style="display:none">
+														<div class="col-sm-6 col-md-4">
+															<div class="row align-items-center ">
+																<label for="" class="col-5">Received Amount : </label>
+																<div class="col-6">
+																	<input type="text" class="form-control form-control-solid border-warning total-tickets" id="received_amount">
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-6 col-md-4">
+															<div class="d-flex">
+																<label for="">Refund Amount : </label>
+																<strong id="refund_amount" style="margin-left: 5px"></strong>
+															</div>
+														</div>
+													</div> -->
+													<button type="submit" id="print_submit" class="btn btn-lg fs-1 w-100 mb-0 py-8 text-uppercase mt-5 btn-success rounded-2 shadowlg btn-secondary">
+														<span class="indicator-label">Print Ticket</span>
+														<span class="indicator-progress">Please wait...
+														<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+													</button>
+
+
+													<!-- following code added by NS on 20220524 -->
+													<div class="mt-20 bg-warning text-dark p-4 ps-10 rounded-2 shadow-lg fs-2 fw-bold">															
+														<p class="m-0 mb-2">
+															Last ticket sold:
+														</p>
+
+														<ul>
+															<li class="m-0 mb-2">
+																Entry (Adult 1, Child 1) Rs 70.																	
+															</li>
+															<li class="m-0 mb-2">
+																Video Photography (Per Unit 1) Rs 250.																	
+															</li>
+															<li class="m-0 mb-2">
+																Aquarium (Adult 1, Child 0) Rs 20.																	
+															</li>																
+														</ul>
+														<!-- Entry (Adult 5, Child 2) Rs 170. -->
+													</div>
+													<!-- above code added by NS on 20220524 -->
+
+													<!-- Commented Reprint Button by ADC on 20220404 -->
+													<!-- <div class="d-flex justify-content-end mt-5">
+													</div> -->
+												</div>
+											</div>
+										</div>
+										<!--end::Card body-->
+									</div>
+								</form>
+								<!--end::Form-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Post-->
+					</div>
+					<!--end::Content-->
+					<!--begin::Footer-->
+					<div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+					  <!--begin::Container-->
+					  <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-center">
+					    <!--begin::Copyright-->
+					    <div class="text-dark order-2 order-md-1">
+					      <p class="copyr mb-0">@ 2023 Zoo Counter Ticket</p>
+					    </div>
+					    <!--end::Copyright-->
+					  </div>
+					  <!--end::Container-->
+					</div>
+
+					<!--end::Footer-->
+				</div>
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Page-->
+		</div>
+		<!--end::Root-->
+		<!--begin::Scrolltop-->
+		<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+			<!--begin::Svg Icon | path: icons/duotone/Navigation/Up-2.svg-->
+			<span class="svg-icon">
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<polygon points="0 0 24 0 24 24 0 24" />
+						<rect fill="#000000" opacity="0.5" x="11" y="10" width="2" height="10" rx="1" />
+						<path d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z" fill="#000000" fill-rule="nonzero" />
+					</g>
+				</svg>
+			</span>
+			<!--end::Svg Icon-->
+		</div>
+		<!--end::Scrolltop-->
+		<!--end::Main-->
+		<!--begin::Javascript-->
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="assets/plugins/global/plugins.bundle.js"></script>
+		<script src="assets/js/scripts.bundle.js"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		<!--end::Page Custom Javascript-->
+		<!--end::Javascript-->
+
+		<script>
+      // alert(3876832);
+			$(document).ready(function(){
+				$('ul.tabs li').click(function(){
+					var tab_id = $(this).attr('data-tab');
+
+					$('ul.tabs li').removeClass('current');
+					$('.tab-content').removeClass('current');
+
+					$(this).addClass('current');
+					$("#"+tab_id).addClass('current');
+				});
+			});
+
+			//Added by ADC on 20220404
+			$("body").on("click", "#show_reprint", function(){
+				//alert(7);
+		    $("#reprint_btn").toggleClass("d-none");
+		  });
+    </script>
+	</body>
+	<!--end::Body-->
+	{% endblock content %}
+</html>
