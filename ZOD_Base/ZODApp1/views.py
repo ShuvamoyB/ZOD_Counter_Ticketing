@@ -13,8 +13,8 @@ import ast
 import os
 import base64
 import pyqrcode
-# from dotenv import load_dotenv
-# load_dotenv()
+
+# Code for deployment
 
 
 ## Global declarations______________
@@ -36,6 +36,7 @@ TicketCloudStatus = False
 ActvCode = 0
 ActivationCode_Verified = False
 OTPCode = 0
+
 
 
 ## Starting Index Page__________________________________________________________
@@ -69,9 +70,10 @@ def login(request):
     def internet_on():
         return (lambda a: True if 0 == a.system('ping 8.8.8.8 -n 1 > clear') else False)(__import__('os'))
     InternetStatus = internet_on()
+    print("InternetStatus: ",InternetStatus)
 
     print("\n",str(ZOO_API_URL))
-    print(Headers,"\n")    
+    print(Headers,"\n")   
 
     # Check the Link with Ticket Cloud:
     if InternetStatus == True:
@@ -81,7 +83,8 @@ def login(request):
         print("\nConnection Status Code: ", response.status_code)
         print("\nConnection Response: ", response.text)
         if response.status_code == 200:  
-            TicketCloudStatus = True          
+            TicketCloudStatus = True      
+
             ## Activation Code Verification
             # Get Activation Code from login.html page
             if request.method == "POST":
@@ -100,24 +103,24 @@ def login(request):
                     print("\nActivation Code Valid.")
                     ActivationCode_Verified = 'yes'
                 else:
-                    print("\nInvalid Activation Code.")
                     ActivationCode_Verified = 'no'
 
-                return redirect('otp')
                 
-                # if ActivationStatusCode != 404:
-                #     print("\nActivation Code Valid.", )
-                #     return redirect('otp')
-                # else:
-                #     print("\nInvalid Activation Code.", )
-                #     messages.warning(request, "Invalid Activation Code")
+                if ActivationStatusCode != 404:
+                    print("\nActivation Code Valid.", )
+                    return redirect('otp')
+                else:
+                    print("\nInvalid Activation Code.", )
+                    messages.error(request, "Invalid Activation Code")
         else:
             print("\nNo Internet")
             TicketCloudStatus = False
 
     print("\nInternet Status: ", InternetStatus)
     print("Cloud connection status: ", TicketCloudStatus)
+
     return render(request, 'login.html', {'internet':InternetStatus, 'ticketcloud':TicketCloudStatus})
+
 
 
 # OTP Validation_______________________________________________
@@ -142,22 +145,30 @@ def otp(request):
         ValidationStatusCode = response3.status_code
         print("Validation Status: ", ValidationStatusCode)
         
-        # if ValidationStatusCode != 404:
-        #     # Download JSON data from cloud________________
-        #     JsonDataFrmCloud = response3.text           
-        #     # Dump JSON data to a JSON file
-        #     with open("CloudResponse.json", "w") as outfile:
-        #         json.dump(JsonDataFrmCloud, outfile)
-        #         print("\n JSON data dumped to the JSON file: CloudResponse.json")
-        #         messages.success(request, "OTP Validate")
-        #         return redirect('activation')
-        return redirect('activation')
-        # else:
-        #     messages.warning(request, "Invalid OTP")
-        #     return render(request, 'otp.html')
+        if ValidationStatusCode != 404:
+            # Download JSON data from cloud________________
+            JsonDataFrmCloud = response3.text
+            # JsonDataFrmCloud = response3.content()
+            # JsonDataFrmCloud = response3.json()
+            print("\nJson Data Frm Cloud (txt): ", JsonDataFrmCloud)
+                     
+            # Dump JSON data to a JSON file
+            # with open("CloudResponse.json", "w") as outfile:
+            #     json.dump(JsonDataFrmCloud, outfile)
+            # print("\n JSON data dumped to the JSON file: CloudResponse.json")
+
+            with open('serverData.txt', 'w') as fpw:
+                fpw.write(JsonDataFrmCloud)
+            print("\nData saved in a text file (serverData.txt).")
+
+            messages.success(request, "OTP Validate")
+            return redirect('activation')
+        
+        else:
+            messages.warning(request, "Invalid OTP")
+            return render(request, 'otp.html')
 
     return render(request, 'otp.html')
-
 
 
 
@@ -165,37 +176,35 @@ def otp(request):
 
 # Fatching data from Json file
 def activation(request):
-
-    # Load JSON and convert to Dictionary
-    with open('CloudResponse.json') as json_file:
-        Dict1 = json.load(json_file)
-        # print("\nDict Data: \n",Dict1)
-        
-        Dict2 =  Dict1['data']['jsondata_sent_t520']
-        # print("\n",Dict2)
-
-        Dict3 = json.loads(Dict2)
-        print("\nDict3: ",Dict3)
-
-
-    # InternetStatus1 = InternetStatus
-    # TicketCloudStatus1 = TicketCloudStatus
     
-    # try:
-    #     ActvCode1 = ActvCode
-    #     if InternetStatus1 == True:
-    #         InternetStatus1 = 'ok'
-    #     else:
-    #         InternetStatus1 = 'failed'
+    myFile = open("serverData.txt")
+    data1 = myFile.read()
+
+    data2 = ast.literal_eval(data1)
+
+    print(type(data2))
+
+    print("\n")
+
+    data3 = data2['data']['jsondata_sent_t520']
+
+    print(data3)
+
+    print("\n")
+
+    Dict3 = json.loads(data3)
+    print(Dict3)
+
+    ## Load JSON and convert to Dictionary
+    # with open('CloudResponse.json') as json_file:
+    #     Dict1 = json.load(json_file)
+    #     print("\nDict1: \n",Dict1)
         
-    #     if TicketCloudStatus1 == True:
-    #         TicketCloudStatus1 = 'yes'
-    #     else:
-    #         TicketCloudStatus1 = 'no'
-    # except:
-    #     InternetStatus1 = 'ok'
-    #     TicketCloudStatus1 = 'yes'
-    #     ActvCode = 'AZD123456'
+    #     Dict2 =  Dict1['data']['jsondata_sent_t520']
+    #     print("\nDict2: \n",Dict2)
+
+    #     Dict3 = json.loads(Dict2)
+    #     print("\nDict3: \n",Dict3)
 
 
     # Upload JSON Data to Database Tables_______________

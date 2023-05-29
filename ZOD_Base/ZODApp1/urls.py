@@ -20,3 +20,4 @@ urlpatterns = [
     path('collection', views.collection, name="collection"),
     path('summary', views.summary, name="summary"),
 ]
+

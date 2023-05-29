@@ -28,6 +28,15 @@
 	<!--end::Head-->
 	<!--begin::Body-->
 	<body id="kt_body" class="bg-white header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px;">
+		
+		{% for message in messages %}
+		<div class="container-fluid p-0">
+			<div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+				<center><b> {{ message }} </b></center>
+			</div>
+		</div>
+		{% endfor %}
+
 		<!--begin::Main-->
 		<div class="d-flex flex-column flex-root full_bg">
 			<!--begin::Authentication - Sign-in -->
