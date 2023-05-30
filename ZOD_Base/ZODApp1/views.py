@@ -13,8 +13,8 @@ import ast
 import os
 import base64
 import pyqrcode
-
-# Code for deployment
+# from dotenv import load_dotenv
+# load_dotenv()
 
 
 ## Global declarations______________
@@ -103,15 +103,17 @@ def login(request):
                     print("\nActivation Code Valid.")
                     ActivationCode_Verified = 'yes'
                 else:
+                    print("\nInvalid Activation Code.")
                     ActivationCode_Verified = 'no'
 
+                return redirect('otp')
                 
-                if ActivationStatusCode != 404:
-                    print("\nActivation Code Valid.", )
-                    return redirect('otp')
-                else:
-                    print("\nInvalid Activation Code.", )
-                    messages.error(request, "Invalid Activation Code")
+                # if ActivationStatusCode != 404:
+                #     print("\nActivation Code Valid.", )
+                #     return redirect('otp')
+                # else:
+                #     print("\nInvalid Activation Code.", )
+                #     messages.warning(request, "Invalid Activation Code")
         else:
             print("\nNo Internet")
             TicketCloudStatus = False
@@ -132,41 +134,32 @@ def otp(request):
         OTPCode = request.POST.get('otpcode')
         print("\nOTP Code: ", OTPCode)
 
-        print("\nActivation Key: ",ActivationKey)
+        # print("\nActivation Key: ",ActivationKey)
         
         OTPKey = 'otp_code'
-        OTPActivationCodeData = {ActivationKey:ActvCode, OTPKey:OTPCode}
-        print("\nOTP Activation Code: ",OTPActivationCodeData)
+        # OTPActivationCodeData = {ActivationKey:ActvCode, OTPKey:OTPCode}
+        # print("\nOTP Activation Code: ",OTPActivationCodeData)
         
         API_OTPVerification = 'api/tapi/otp_verification_api'
         api_url_otp = str(ZOO_API_URL+API_OTPVerification)
         
-        response3 = requests.post(api_url_otp, data=OTPActivationCodeData, headers=Headers)
-        ValidationStatusCode = response3.status_code
-        print("Validation Status: ", ValidationStatusCode)
+        # response3 = requests.post(api_url_otp, data=OTPActivationCodeData, headers=Headers)
+        # ValidationStatusCode = response3.status_code
+        # print("Validation Status: ", ValidationStatusCode)
         
-        if ValidationStatusCode != 404:
-            # Download JSON data from cloud________________
-            JsonDataFrmCloud = response3.text
-            # JsonDataFrmCloud = response3.content()
-            # JsonDataFrmCloud = response3.json()
-            print("\nJson Data Frm Cloud (txt): ", JsonDataFrmCloud)
-                     
-            # Dump JSON data to a JSON file
-            # with open("CloudResponse.json", "w") as outfile:
-            #     json.dump(JsonDataFrmCloud, outfile)
-            # print("\n JSON data dumped to the JSON file: CloudResponse.json")
-
-            with open('serverData.txt', 'w') as fpw:
-                fpw.write(JsonDataFrmCloud)
-            print("\nData saved in a text file (serverData.txt).")
-
-            messages.success(request, "OTP Validate")
-            return redirect('activation')
-        
-        else:
-            messages.warning(request, "Invalid OTP")
-            return render(request, 'otp.html')
+        # if ValidationStatusCode != 404:
+        #     # Download JSON data from cloud________________
+        #     JsonDataFrmCloud = response3.text           
+        #     # Dump JSON data to a JSON file
+        #     with open("CloudResponse.json", "w") as outfile:
+        #         json.dump(JsonDataFrmCloud, outfile)
+        #         print("\n JSON data dumped to the JSON file: CloudResponse.json")
+        #         messages.success(request, "OTP Validate")
+        #         return redirect('activation')
+        return redirect('activation')
+        # else:
+        #     messages.warning(request, "Invalid OTP")
+        #     return render(request, 'otp.html')
 
     return render(request, 'otp.html')
 
@@ -195,16 +188,25 @@ def activation(request):
     Dict3 = json.loads(data3)
     print(Dict3)
 
-    ## Load JSON and convert to Dictionary
-    # with open('CloudResponse.json') as json_file:
-    #     Dict1 = json.load(json_file)
-    #     print("\nDict1: \n",Dict1)
-        
-    #     Dict2 =  Dict1['data']['jsondata_sent_t520']
-    #     print("\nDict2: \n",Dict2)
 
-    #     Dict3 = json.loads(Dict2)
-    #     print("\nDict3: \n",Dict3)
+    # InternetStatus1 = InternetStatus
+    # TicketCloudStatus1 = TicketCloudStatus
+    
+    # try:
+    #     ActvCode1 = ActvCode
+    #     if InternetStatus1 == True:
+    #         InternetStatus1 = 'ok'
+    #     else:
+    #         InternetStatus1 = 'failed'
+        
+    #     if TicketCloudStatus1 == True:
+    #         TicketCloudStatus1 = 'yes'
+    #     else:
+    #         TicketCloudStatus1 = 'no'
+    # except:
+    #     InternetStatus1 = 'ok'
+    #     TicketCloudStatus1 = 'yes'
+    #     ActvCode = 'AZD123456'
 
 
     # Upload JSON Data to Database Tables_______________
@@ -332,35 +334,41 @@ def activation(request):
     print("Video Per Unit Rate List (Activation Page): ",perunitRtList,"\n")
         
         
-    # Display Data at Activation Page______________________
-    # Entry:
-    EventName1 = eventList[0]
-    AdultRate1 = adultRtList[0]
-    ChildRate1 = childRtList[0]
-    PerUnitRate1 = perunitRtList[0]
-    print("\nEvent Name-1: ",EventName1)
-    print("Adult Rate-1: ",AdultRate1)
-    print("Child Rate-1: ",ChildRate1)
-    print("PerUnit Rate-1: ",PerUnitRate1,"\n")
-    # Video Photography:
-    EventName2 = eventList[1]
-    AdultRate2 = adultRtList[1]
-    ChildRate2 = childRtList[1]
-    PerUnitRate2 = perunitRtList[1]
-    print("\nEvent Name-2: ",EventName2)
-    print("Adult Rate-2: ",AdultRate2)
-    print("Child Rate-2: ",ChildRate2)
-    print("Per Unit Rate-2: ",PerUnitRate2)
-    # Aquarium:
-    EventName3 = eventList[2]
-    AdultRate3 = adultRtList[2]
-    ChildRate3 = childRtList[2]
-    PerUnitRate3 = perunitRtList[2]
-    print("\nEvent Name-3: ",EventName3)
-    print("Adult Rate-3: ",AdultRate3)
-    print("Child Rate-3: ",ChildRate3)
-    print("Per Unit Rate-3: ",PerUnitRate3) # NA
+        # Display Data at Activation Page______________________
+    i=0
+    for i in range(LastEventID320):
+        if i == (LastEventID320-3):
+            # Entry:
+            EventName1 = eventList[i]
+            AdultRate1 = adultRtList[i]
+            ChildRate1 = childRtList[i]
+            PerUnitRate1 = perunitRtList[i]
+            print("\nEvent Name-1: ",EventName1)
+            print("Adult Rate-1: ",AdultRate1)
+            print("Child Rate-1: ",ChildRate1)
+            print("PerUnit Rate-1: ",PerUnitRate1,"\n")
 
+        if i == (LastEventID320-2):
+            # Video Photography:
+            EventName2 = eventList[i]
+            AdultRate2 = adultRtList[i]
+            ChildRate2 = childRtList[i]
+            PerUnitRate2 = perunitRtList[i]
+            print("\nEvent Name-2: ",EventName2)
+            print("Adult Rate-2: ",AdultRate2)
+            print("Child Rate-2: ",ChildRate2)
+            print("Per Unit Rate-2: ",PerUnitRate2)
+        
+        if i == (LastEventID320-1):
+            # Aquarium:
+            EventName3 = eventList[i]
+            AdultRate3 = adultRtList[i]
+            ChildRate3 = childRtList[i]
+            PerUnitRate3 = perunitRtList[i]
+            print("\nEvent Name-3: ",EventName3)
+            print("Adult Rate-3: ",AdultRate3)
+            print("Child Rate-3: ",ChildRate3)
+            print("Per Unit Rate-3: ",PerUnitRate3) # NA
 
     StartDate1 = datetime.now().date().strftime("%d-%B-%Y")
     StartTime1 = datetime.now().time().strftime("%H:%M %p")
